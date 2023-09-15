@@ -167,7 +167,7 @@ Sign off – DRC, LVS and STA
 OpenLane can be used to harden macros and chips. RTL synthesis is done by yosys and abc. Yosys converts to netlist and abc maps it to a technology library. OpenROAD is used to perform place and route. 
 Shown below is the OpenLane design flow
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%201/OpenLane_design_flow.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%201/OpenLane_design_flow.png)
 
 #### Get familiar to open-source EDA tools 
 We are going to see the results of synthesis on OpenLane for a predefined design file **picorv32a**.
@@ -185,7 +185,7 @@ prep -design <file_name>
 run_synthesis
 ```
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%201/run_synthesis.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%201/run_synthesis.png)
 
 It is required to give the command **package require openlane 0.9** every time we open the interactive mode.
 On running the command **run_synthesis** we can check our designs folder to find a report.
@@ -195,7 +195,7 @@ cd ../OpenLane/designs/picorv32a/runs/RUN_2023.09.09_18.41.06/reports/synthesis/
 **RUN_2023.09.09_18.41.06** is the most recent run that was performed. 
 Navigate to the above folder and open **1-synthesis.AREA_0.stat.rpt**
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%201/run_synthesis_report.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%201/run_synthesis_report.png)
 
 From this report we can see that the total number of cells = 10104 and the number of sky130_fd_sc_hd_dfxtp_2 (this is the standard cell for d flip flop) = 1596. Thus the ratio of cells which are d flip flops is 0.157
 
@@ -244,24 +244,24 @@ prep -design <file_name>
 run_synthesis
 run_floorplan
 ```
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/openlane_floorplan.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/openlane_floorplan.png)
 
 Once floorplan is complete we need to open it in magic to view the floorplan.
 ```
 cd ../OpenLane/designs/picorv32a/runs/<most_recent_run>/results/floorplan/
 magic -T ../git_open_pdks/sky130/magic/sky130.tech lef read ../OpenLane/designs/picorv32a/runs/<most_recent_run>/tmp/merged.nom.lef def read picorv32.def &
 ```
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/view_floorplan.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/view_floorplan.png)
 
 Once magic opens, we can see the cell. Use **s** and then **v** to center the floorplan. Use **z** to zoom in.
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/floorplan.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/floorplan.png)
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/pins%20in%20floorplan.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/pins%20in%20floorplan.png)
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/cells%20in%20floorplan.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/cells%20in%20floorplan.png)
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/standard%20cells%20in%20floorplan.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/standard%20cells%20in%20floorplan.png)
 
 
 #### Library Binding and Placement
@@ -288,13 +288,13 @@ cd ../OpenLane/designs/picorv32a/runs/<most_recent_run>/results/placement/
 magic -T ../git_open_pdks/sky130/magic/sky130.tech lef read ../OpenLane/designs/picorv32a/runs/<most_recent_run>/tmp/merged.nom.lef def read picorv32.def &
 ```
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/view_placement.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/view_placement.png)
 
 This opens up magic where we can see the global placement of the standard cells
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/placement.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/placement.png)
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%202/placement_std_cells.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/placement_std_cells.png)
 
 #### Cell design and characterization flows
 Cell design flow has 3 parts – inputs, design steps, and outputs. 
@@ -349,9 +349,9 @@ magic -T sky130.tech sky130_inv.mag &
 ```
 The version of magic on my system is 8.3.105 and to view the layout you need to have the file sky130A.tech which can be downloaded from [https://github.com/praharshapm/vsdmixedsignalflow/blob/master/sky130A.tech](https://github.com/praharshapm/vsdmixedsignalflow/blob/master/sky130A.tech). This file must be downloaded into the **vsdstdcelldesign** folder to run the above command.
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%203/inverter_magic.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/inverter_magic.png)
 
-![image](https://github.com/ks-vandana/pes_asic_class/blob/main/WEEK%203/DAY%203/magic_layout.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/magic_layout.png)
 
 #### Inception of Layout and CMOS fabrication process
 
