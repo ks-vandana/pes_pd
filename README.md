@@ -146,10 +146,10 @@
 
 <summary><b> DAY 1 </b></summary>
 
-#### How to talk to computers
+## How to talk to computers
 Any board is the processor/SoC with interfaces. Packages have predefined pins and these are connected to the chip using wires. Packages have components like pads (signals going inside the chip or out of the chip go through the pads), core (where all the digital logic sits),die, foundry IPs (like SRAM, ADC, DAC, PLL) and macros (like the SoC and SPI)
 
-#### SoC design and OpenLANE
+## SoC design and OpenLANE
 For digital ASIC design we require RTL IPs, EDA tools and PDK data. PDK is the interface between the FAB and the designers. It contains process design rules, device models, digital standard cell libraries, IO libraries and much more. To go from RTL to GDS we need to follow the following steps – synthesis, floor/power planning, placement, clock tree synthesis, routing and sign off.
 
 Synthesis – converts RTL into a circuit of components from the standard cell library.
@@ -169,7 +169,7 @@ Shown below is the OpenLane design flow
 
 ![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%201/OpenLane_design_flow.png)
 
-#### Get familiar to open-source EDA tools 
+## Get familiar to open-source EDA tools 
 We are going to see the results of synthesis on OpenLane for a predefined design file **picorv32a**.
 
 After installation is successful run the following commands
@@ -206,7 +206,7 @@ From this report we can see that the total number of cells = 10104 and the numbe
 
 <summary><b> DAY 2 </b></summary>
 
-#### Chip Floor planning considerations
+## Chip Floor planning considerations
 1) Define the width and height of the core and die: we first begin with a netlist. Calculate the area occupied by the netlist on a silicon wafer. Inside the die, we have a core, where we place our digital logic. A die is a small semiconductor material specimen on which the fundamental circuit is fabricated. Utilization factor = area occupied by the netlist/total area of the core. Aspect ratio = height/width.
 
 2) Define the location of preplaced cells: Some cells perform certain tasks and can be re-instantiated multiple times like memory, clock gating cells, comparator, mux, and more. These IPs have user-defined locations and hence are placed on the chip before placement and routing which is why we refer to them as preplaced cells.  The location of these cells is not modified during the PNR stages.
@@ -264,7 +264,7 @@ Once magic opens, we can see the cell. Use **s** and then **v** to center the fl
 ![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/standard%20cells%20in%20floorplan.png)
 
 
-#### Library Binding and Placement
+## Library Binding and Placement
 This part discusses about placement and the steps involved in it.
 Placement and routing
 1) Bind netlist with physical cells: The library consists of various flavors of standard cells and their respective timing information and required conditions. It also contains the width and height of each cell.
@@ -296,7 +296,7 @@ This opens up magic where we can see the global placement of the standard cells
 
 ![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%202/placement_std_cells.png)
 
-#### Cell design and characterization flows
+## Cell design and characterization flows
 Cell design flow has 3 parts – inputs, design steps, and outputs. 
 Inputs to design a standard cell are PDKs which contain DRC and LVS rules, SPICE models, library, and user-defined specs. SPICE model parameters are the parameters that we get from the foundary. 
 Design steps are circuit design, layout design and characterization.
@@ -317,7 +317,7 @@ Characterization flow has the following steps
 9) 
 Feed in the outputs of the 8 steps to the characterization software tool called GUNA. It will give output as a model that contains timing, noise, power .libs and functionality of the circuit. 
 
-#### General timing characterization parameters
+## General timing characterization parameters
 Timing threshold definitions are – slew_low_rise_thr,  slew_high_rise_thr, slew_low_fall_thr, slew_high_fall_thr, in_rise_thr, in_fall_thr, out_rise_thr, and out_fall_thr. 
 Propagation delay uses in_rise_thr, in_fall_thr, out_rise_thr, and out_fall_thr. Transition time for low to high uses slew_low_rise_thr and  slew_high_rise_thr. Transition time for high to low uses slew_low_fall_thr and slew_high_fall_thr
 
@@ -328,7 +328,7 @@ Propagation delay uses in_rise_thr, in_fall_thr, out_rise_thr, and out_fall_thr.
 
 <summary><b> DAY 3 </b></summary>
 
-#### Labs for CMOS inverter ngspice simulations
+## Labs for CMOS inverter ngspice simulations
 SPICE deck is the connectivity information of the netlist, the inputs necessary, tap points etc. We need to define the component values like W/L ratios, capacitance values, VDD and VSS values. Next we need to identify and name the nodes. 
 CMOS circuits are very robust. The parameter that define the robustness of CMOS is switching threshold: This is the point where Vin = Vout = Vm. When we compare 2 circuits where the 1st one has Wn < Wp and the 2nd one has Wn != Wp, Vm2>Vm1. At Vm, Idsp = -Idsn. 
 
@@ -353,10 +353,10 @@ The version of magic on my system is 8.3.105 and to view the layout you need to 
 
 ![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/magic_layout.png)
 
-#### Inception of Layout and CMOS fabrication process
+## Inception of Layout and CMOS fabrication process
 
 
-#### Sky130 Tech File Labs
+## Sky130 Tech File Labs
 
 
 
@@ -366,16 +366,16 @@ The version of magic on my system is 8.3.105 and to view the layout you need to 
 
 <summary><b> DAY 4 </b></summary>
 
-#### Timing modelling using delay tables
+## Timing modelling using delay tables
 
 
-#### Timing analysis with ideal clocks using openSTA
+## Timing analysis with ideal clocks using openSTA
 
 
-#### Clock tree synthesis TritonCTS and signal integrity
+## Clock tree synthesis TritonCTS and signal integrity
 
 
-#### Timing analysis with real clocks using openSTA
+## Timing analysis with real clocks using openSTA
 
 </details>
 
@@ -384,7 +384,12 @@ The version of magic on my system is 8.3.105 and to view the layout you need to 
 
 <summary><b> DAY 5 </b></summary>
 
-#### Routing and design rule check (DRC)
+## Routing and design rule check (DRC)
 
 
-#### Power Distribution Network and routing
+## Power Distribution Network and routing
+
+
+## TritonRoute Features
+
+</details>
