@@ -1,6 +1,6 @@
 # VLSI PHYSICAL DESIGN
 
-# COURSE DETAILS
+## COURSE DETAILS
 
 <details>
 
@@ -140,7 +140,7 @@
   
 </details>
 
-# COURSE WORK
+## COURSE WORK
 
 <details>
 
