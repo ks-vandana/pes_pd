@@ -365,9 +365,9 @@ The version of magic on my system is 8.3.105 and to view the layout you need to 
 7) Steps to form contacts and interconnects (local): We first remove the thin screen oxide. We then deposit titanium on the wafer surface using sputtering (hitting titanium with argon gas makes particles of titanium sputter out). The wafer is then heated in N2 ambient for 60 seconds and we get TiSi2 and TiN. We then use **mask11** and then etch out the TiN using RCA cleaning. This creates local TiN connections.
 8) Higher-level metal formation: We deposit a thick layer of SiO2 doped with phosphorous or boron. We then do chemical mechanical polishing for planarizing the wafer structure. Next, we use **mask12** and drill contact holes. We remove the photoresist and deposit TiN. Next, we deposit blanket tungsten and then do chemical metal polishing. We then put a layer of aluminium, use **mask13**, and etch out the aluminium. SiO2 is deposited and CMP is done. **mask14** is used to drill contact holes and the above process is repeated. We then use **mask15** and use Si3N2 to protect the chip. Finally, we use **mask16** to open the contact holes. 
 
-![image]()
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/nmos_inv.png)
 
-![image]()
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/pmos_inv.png)
 
 LEF file gives us information on the metal layer. 
 
@@ -379,7 +379,7 @@ ext2spice cthresh 0 rthresh 0
 ext2spice
 ```
 
-![image]()
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/tkcon_inv.png)
 
 
 ## Sky130 Tech File Labs
