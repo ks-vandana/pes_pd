@@ -384,7 +384,67 @@ ext2spice
 
 ## Sky130 Tech File Labs
 
+### LAB 1
+The order in which we can see the pins in the spice file is drain, gate, source and substrate. We need to make a few changes
+This is the original spice file 
+```txt
+* SPICE3 file created from sky130_inv.ext - technology: sky130A
 
+.option scale=10000u
+.subckt sky130_inv A Y VPWR VGND
+M1000 Y A VPWR VPWR pshort w=37 l=23
++  ad=1443 pd=152 as=1517 ps=156
+M1001 Y A VGND VGND nshort w=35 l=23
++  ad=1435 pd=152 as=1365 ps=148
+C0 A VPWR 0.07fF
+C1 VPWR Y 0.11fF
+C2 A Y 0.05fF
+C3 Y VGND 0.24fF
+C4 VPWR VGND 0.59fF
+ends
+```
+After changes, this is the spice file
+```txt
+* SPICE3 file created from sky130_inv.ext - technology: sky130A
+
+.option scale=0.01u
+.include /home/vandana/OpenLane/vsdstdcelldesign/libs/pshort.lib
+.include /home/vandana/OpenLane/vsdstdcelldesign/libs/nshort.lib
+//.subckt sky130_inv A Y VPWR VGND
+M1000 Y A VPWR VPWR pshort_model.0 w=37 l=23
++  ad=1443 pd=152 as=1517 ps=156
+M1001 Y A VGND VGND nshort_model.0 w=35 l=23
++  ad=1435 pd=152 as=1365 ps=148
+VDD VPWR 0 3.3V
+VSS VGND 0 0V
+Va A VGND PULSE(0V 3.3V 0 0.1ns 0.1ns 2ns 4ns)
+
+C0 A VPWR 0.07fF
+C1 VPWR Y 0.11fF
+C2 A Y 0.05fF
+C3 Y VGND 0.24fF
+C4 VPWR VGND 0.59fF
+//.ends
+.tran 1n 20n
+
+.control
+run
+.endc
+.end
+```
+We then run the simulation using this command
+```
+ngspice sky130_inv.spice
+```
+![image]()
+
+### LAB 2
+```
+plot y vs time a
+```
+![image]()
+
+We need to find time for rise transition (output from 20% to 80%), fall transition (output from 80% to 20%), fall cell delay and rise cell delay. 
 
 </details>
 
