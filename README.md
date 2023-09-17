@@ -345,7 +345,7 @@ cp sky130A.tech ../OpenLane/vsdstdcelldesign/
 ```
 To view the layout of the inverter, use the following command
 ```
-magic -T sky130.tech sky130_inv.mag &
+magic -T sky130A.tech sky130_inv.mag &
 ```
 The version of magic on my system is 8.3.105 and to view the layout you need to have the file sky130A.tech which can be downloaded from [https://github.com/praharshapm/vsdmixedsignalflow/blob/master/sky130A.tech](https://github.com/praharshapm/vsdmixedsignalflow/blob/master/sky130A.tech). This file must be downloaded into the **vsdstdcelldesign** folder to run the above command.
 
