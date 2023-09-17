@@ -436,7 +436,6 @@ We then run the simulation using this command
 ```
 ngspice sky130_inv.spice
 ```
-![image]() transient analysis
 
 ### LAB 2
 ```
@@ -444,37 +443,37 @@ plot y vs time a
 ```
 This gives us the transient analysis of the inverter.
 
-![image]()
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/transient_analysis_inv.png)
 
 We need to find time for rise transition (output from 20% to 80%), fall transition (output from 80% to 20%), cell fall delay and cell rise delay. 
 
 1. Rise transistion: 20% of 3.3V is 0.66V and 80% of 3.3V is 2.64V. We will now locate this on the graph. Everytime we select a point on the graph, we can see its x and y value in the terminal. Difference between x0 at 20% and x0 at 80% is 0.042n seconds.
 
-![image]() rise 20%
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/rise_20%25.png)
 
-![image]() rise 80%
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/rise_80%25.png)
 
-![image]() coords
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/rise_transistion.png)
 
 3. Fall transistion: Difference between x0 at 80% and x0 at 20% is 0.028n seconds.
 
-![image]() fall 20%
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/fall_20%25.png)
 
-![image]() fall 80%
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/fall_80%25.png)
 
-![image]() coords
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/fall_transistion.png)
 
 5. Cell fall delay: 50% of 3.3V is 1.65V. Difference between input x0 at 50% and output x0 at 50% is  seconds.
   
-![image]() cell fall
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/cell_fall.png)
 
-![image]() coords
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/cell_fall_coords.png)
 
 7. Cell rise delay: Difference between input x0 at 50% and output x0 at 50% is  seconds.
   
-![image]() cell fall
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/cell_rise.png)
 
-![image]() coords
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/cell_rise_coords.png)
 
 ### LAB 3
 Use the website ![http://opencircuitdesign.com/magic/](http://opencircuitdesign.com/magic/) to explore the documentation of magic. We are going to focus on DRC. 
@@ -484,7 +483,7 @@ Use this command to set up the lab files needed
 ```
 wget https://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
 ```
-![image]() error
+
 
 ### LAB 5
 
