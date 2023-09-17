@@ -517,7 +517,7 @@ Then type the following commands in tkcon windown to see the change
 tech load sky130A.tech
 drc check
 ```
-![image]() corrected poly drc
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/corrected%20poly%20drc.png)
 
 ### LAB 7
 To fix poly and diff and tap drc, make the following changs to the sky130A.tech file. SUbstitute the floowing lines in 4814 and 4815
