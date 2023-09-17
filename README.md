@@ -502,15 +502,46 @@ This lab we will correct the incorrect depictions of DRC. First we open poly but
 ![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/incorrect_poly.png)
 
 To rectify this we will look at sky130A.tech.
+Add the following lines after line 5178
+```
+spacing xhrpoly,uhrpoly,xpc allpolynonres 480 touching_illegal \
+	"xhrpoly/uhrpoly resistor spacing to diffusion < %d (poly.9)"
+```
+Add the following lines after line 4815
+```
+spacing npres allpolynonres 480 touching_illegal \
+	"poly.resistor spacing to N-tap < %d (poly.9)"
+```
+Then type the following commands in tkcon windown to see the change
+```
+tech load sky130A.tech
+drc check
+```
+![image]() corrected poly drc
 
 ### LAB 7
-
-
-### LAB 8
-
+To fix poly and diff and tap drc, make the following changs to the sky130A.tech file. SUbstitute the floowing lines in 4814 and 4815
+```
+spacing npres alldiff 480 touching_illegal \
+	"poly.resistor spacing to N-tap < %d (poly.9)"
+```
 
 ### LAB 9
-
+To fix nwell errors write the foolowings lines after line 4728 in sky130A.tech
+```
+variants (full)
+cifmaxwidth nwell_untapped 0 bend_illegal \
+	"Nwell missing tap (nwell.4)"
+variants *
+```
+Add the following afetr line 1239
+```
+templayer nwell_tapped
+bloat -all nsc nwell
+ 
+templayer nwell_untapped nwell
+and-not nwell_tapped
+```
 
 </details>
 
