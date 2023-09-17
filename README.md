@@ -1,4 +1,4 @@
-![image](https://github.com/ks-vandana/pes_pd/assets/116361300/54761f3d-7fef-4fda-a260-a0c534ed306a)# VLSI PHYSICAL DESIGN
+# VLSI PHYSICAL DESIGN
 
 ## COURSE DETAILS
 
