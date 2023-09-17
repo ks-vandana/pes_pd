@@ -482,14 +482,26 @@ Use the website ![http://opencircuitdesign.com/magic/](http://opencircuitdesign.
 Use this command to set up the lab files needed
 ```
 wget https://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+tar xfz drc_tests.tgz
+cd drc_tests/
 ```
-
+Use the next command to invoke magic
+```
+magic -d XR
+```
+![image]() magic
 
 ### LAB 5
+Go to files and open the **met3.mag**. TYping **drc why** gives us the DRC rule associated with what is seen on screen
 
+![image]() drc met3
 
 ### LAB 6
+This lab we will correct the incorrect depictions of DRC. First we open poly but typing **load poly** in the tkcon window. As we can see poly.9 is incorrect.
 
+![image]() incorrect poly
+
+To rectify this we will look at sky130A.tech.
 
 ### LAB 7
 
