@@ -349,9 +349,9 @@ magic -T sky130A.tech sky130_inv.mag &
 ```
 The version of magic on my system is 8.3.105 and to view the layout you need to have the file sky130A.tech which can be downloaded from [https://github.com/praharshapm/vsdmixedsignalflow/blob/master/sky130A.tech](https://github.com/praharshapm/vsdmixedsignalflow/blob/master/sky130A.tech). This file must be downloaded into the **vsdstdcelldesign** folder to run the above command.
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/inverter_magic.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%201/inverter_magic.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/magic_layout.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%201/magic_layout.png)
 
 ## Inception of Layout and CMOS fabrication process
 16 mask CMOS process
@@ -365,9 +365,9 @@ The version of magic on my system is 8.3.105 and to view the layout you need to 
 7) Steps to form contacts and interconnects (local): We first remove the thin screen oxide. We then deposit titanium on the wafer surface using sputtering (hitting titanium with argon gas makes particles of titanium sputter out). The wafer is then heated in N2 ambient for 60 seconds and we get TiSi2 and TiN. We then use **mask11** and then etch out the TiN using RCA cleaning. This creates local TiN connections.
 8) Higher-level metal formation: We deposit a thick layer of SiO2 doped with phosphorous or boron. We then do chemical mechanical polishing for planarizing the wafer structure. Next, we use **mask12** and drill contact holes. We remove the photoresist and deposit TiN. Next, we deposit blanket tungsten and then do chemical metal polishing. We then put a layer of aluminium, use **mask13**, and etch out the aluminium. SiO2 is deposited and CMP is done. **mask14** is used to drill contact holes and the above process is repeated. We then use **mask15** and use Si3N2 to protect the chip. Finally, we use **mask16** to open the contact holes. 
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/nmos_inv.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%202/nmos_inv.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/pmos_inv.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%202/pmos_inv.png)
 
 LEF file gives us information on the metal layer. 
 
@@ -379,7 +379,7 @@ ext2spice cthresh 0 rthresh 0
 ext2spice
 ```
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/tkcon_inv.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%202/tkcon_inv.png)
 
 
 ## Sky130 Tech File Labs
@@ -443,37 +443,37 @@ plot y vs time a
 ```
 This gives us the transient analysis of the inverter.
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/transient_analysis_inv.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/transient_analysis_inv.png)
 
 We need to find time for rise transition (output from 20% to 80%), fall transition (output from 80% to 20%), cell fall delay and cell rise delay. 
 
 1. Rise transistion: 20% of 3.3V is 0.66V and 80% of 3.3V is 2.64V. We will now locate this on the graph. Everytime we select a point on the graph, we can see its x and y value in the terminal. Difference between x0 at 20% and x0 at 80% is 0.042n seconds.
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/rise_20%25.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/rise_20%25.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/rise_80%25.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/rise_80%25.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/rise_transistion.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/rise_transistion.png)
 
 3. Fall transistion: Difference between x0 at 80% and x0 at 20% is 0.028n seconds.
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/fall_20%25.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/fall_20%25.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/fall_80%25.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/fall_80%25.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/fall_transistion.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/fall_transistion.png)
 
 5. Cell fall delay: 50% of 3.3V is 1.65V. Difference between input x0 at 50% and output x0 at 50% is  seconds.
   
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/cell_fall.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/cell_fall.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/cell_fall_coords.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/cell_fall_coords.png)
 
 7. Cell rise delay: Difference between input x0 at 50% and output x0 at 50% is  seconds.
   
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/cell_rise.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/cell_rise.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/cell_rise_coords.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/cell_rise_coords.png)
 
 ### LAB 3
 Use the website ![http://opencircuitdesign.com/magic/](http://opencircuitdesign.com/magic/) to explore the documentation of magic. We are going to focus on DRC. 
@@ -489,17 +489,17 @@ Use the next command to invoke magic
 ```
 magic -d XR
 ```
-![image]() magic
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/magic.png)
 
 ### LAB 5
 Go to files and open the **met3.mag**. TYping **drc why** gives us the DRC rule associated with what is seen on screen
 
-![image]() drc met3
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/drc_met3.png)
 
 ### LAB 6
 This lab we will correct the incorrect depictions of DRC. First we open poly but typing **load poly** in the tkcon window. As we can see poly.9 is incorrect.
 
-![image]() incorrect poly
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%203/Images%20part%203/incorrect_poly.png)
 
 To rectify this we will look at sky130A.tech.
 
