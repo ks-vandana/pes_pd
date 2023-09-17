@@ -1,4 +1,4 @@
-# VLSI PHYSICAL DESIGN
+![image](https://github.com/ks-vandana/pes_pd/assets/116361300/54761f3d-7fef-4fda-a260-a0c534ed306a)# VLSI PHYSICAL DESIGN
 
 ## COURSE DETAILS
 
@@ -436,15 +436,70 @@ We then run the simulation using this command
 ```
 ngspice sky130_inv.spice
 ```
-![image]()
+![image]() transient analysis
 
 ### LAB 2
 ```
 plot y vs time a
 ```
+This gives us the transient analysis of the inverter.
+
 ![image]()
 
-We need to find time for rise transition (output from 20% to 80%), fall transition (output from 80% to 20%), fall cell delay and rise cell delay. 
+We need to find time for rise transition (output from 20% to 80%), fall transition (output from 80% to 20%), cell fall delay and cell rise delay. 
+
+1. Rise transistion: 20% of 3.3V is 0.66V and 80% of 3.3V is 2.64V. We will now locate this on the graph. Everytime we select a point on the graph, we can see its x and y value in the terminal. Difference between x0 at 20% and x0 at 80% is 0.042n seconds.
+
+![image]() rise 20%
+
+![image]() rise 80%
+
+![image]() coords
+
+3. Fall transistion: Difference between x0 at 80% and x0 at 20% is 0.028n seconds.
+
+![image]() fall 20%
+
+![image]() fall 80%
+
+![image]() coords
+
+5. Cell fall delay: 50% of 3.3V is 1.65V. Difference between input x0 at 50% and output x0 at 50% is  seconds.
+  
+![image]() cell fall
+
+![image]() coords
+
+7. Cell rise delay: Difference between input x0 at 50% and output x0 at 50% is  seconds.
+  
+![image]() cell fall
+
+![image]() coords
+
+### LAB 3
+Use the website ![http://opencircuitdesign.com/magic/](http://opencircuitdesign.com/magic/) to explore the documentation of magic. We are going to focus on DRC. 
+
+### LAB 4
+Use this command to set up the lab files needed
+```
+<pre>wget https://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz</pre>
+```
+![image]() error
+
+### LAB 5
+
+
+### LAB 6
+
+
+### LAB 7
+
+
+### LAB 8
+
+
+### LAB 9
+
 
 </details>
 
