@@ -482,7 +482,7 @@ Use the website ![http://opencircuitdesign.com/magic/](http://opencircuitdesign.
 ### LAB 4
 Use this command to set up the lab files needed
 ```
-<pre>wget https://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz</pre>
+wget https://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
 ```
 ![image]() error
 
