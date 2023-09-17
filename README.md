@@ -340,8 +340,8 @@ cd vsdstdcelldesign
 ```
 Then find the sky130.tech file and move to the above directory
 ```
-cd ../git_open_pdks/sky130/magic/
-cp sky130.tech ../OpenLane/vsdstdcelldesign/
+cd ../
+cp sky130A.tech ../OpenLane/vsdstdcelldesign/
 ```
 To view the layout of the inverter, use the following command
 ```
