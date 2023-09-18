@@ -575,8 +575,44 @@ cp sky130_vsdinv.lef ../OpenLane/designs/picorv32a/src/
 ```
 Then we need to make a few modiciations to our config file.
 ```
+set ::env(DESIGN_NAME) "picorv32a"
 
+set ::env(VERILOG_FILES) "$::env(DESIGN_DIR)/src/picorv32a.v"
+#set ::env(SDC_FILE) "$::env(DESIGN_DIR)/src/picorv32a.sdc"
+
+set ::env(CLOCK_PERIOD) "12.000"
+set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_NET) $::env(CLOCK_PORT)
+
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+
+set filename $::env(DESIGN_DIR)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
+if { [file exists $filename] == 1} {
+	source $filename
+}
 ```
+We then open the interactive mode of OpenLane with a few extra commands
+```
+cd OpenLane
+sudo make mount
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design <file_name> -tag <run_name>  -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+```
+This shows us that the inverter used in the design will be our custom inverter.
+
+![image]() merging
+
+Then run **run_synthesis** and **run_floorplan** to ensure that inverter is being used. 
+If we open picorv32a, we see that our inverter is being used. 
+
 
 ## Timing analysis with ideal clocks using openSTA
 
