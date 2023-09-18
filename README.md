@@ -550,7 +550,33 @@ and-not nwell_tapped
 <summary><b> DAY 4 </b></summary>
 
 ## Timing modelling using delay tables
+Routing can only occur on the grids specified in **sky130_fd_sc_hd**. This grids are specific to the material of routing medium.
 
+![image]() edit1
+
+![image]() edit1_view
+
+Width of the standard cell should be odd multiples of the x_pitch and height of the standard cell should be odd multiples of y_pitch.
+
+![image]() xpitch
+
+![image]() ypitch
+
+Before we extract the LEF file of the layout, it is important to define what the pins are (class) and what they are used for (use). We use the following command in the tkcon window to make the LEF file.
+```
+lef write
+```
+Move this file into the src folder of picorv32a. Run the following commands in the directory.
+```
+cd vsdstdcelldesign/
+cd libs/
+cp sky130_fd_sc_hd__* ../OpenLane/designs/picorv32a/src/
+cp sky130_vsdinv.lef ../OpenLane/designs/picorv32a/src/
+```
+Then we need to make a few modiciations to our config file.
+```
+
+```
 
 ## Timing analysis with ideal clocks using openSTA
 
