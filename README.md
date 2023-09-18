@@ -552,15 +552,15 @@ and-not nwell_tapped
 ## Timing modelling using delay tables
 Routing can only occur on the grids specified in **sky130_fd_sc_hd**. This grids are specific to the material of routing medium.
 
-![image]() edit1
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/edit1.png)
 
-![image]() edit1_view
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/edit1_view.png)
 
 Width of the standard cell should be odd multiples of the x_pitch and height of the standard cell should be odd multiples of y_pitch.
 
-![image]() xpitch
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/x_pitch.png)
 
-![image]() ypitch
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/y_pitch.png)
 
 Before we extract the LEF file of the layout, it is important to define what the pins are (class) and what they are used for (use). We use the following command in the tkcon window to make the LEF file.
 ```
@@ -608,12 +608,13 @@ add_lefs -src $lefs
 ```
 This shows us that the inverter used in the design will be our custom inverter.
 
-![image]() merging
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/merged.png)
 
 Then run **run_synthesis** and **run_floorplan** to ensure that inverter is being used. If we open picorv32a in magic, we see that our inverter is being used. 
 
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/vsd_inv_in_picorv32a_1.png)
 
-
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/vsd_inv_in_picorv32a_2.png)
 
 ## Timing analysis with ideal clocks using openSTA
 
