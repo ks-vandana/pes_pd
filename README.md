@@ -610,8 +610,9 @@ This shows us that the inverter used in the design will be our custom inverter.
 
 ![image]() merging
 
-Then run **run_synthesis** and **run_floorplan** to ensure that inverter is being used. 
-If we open picorv32a, we see that our inverter is being used. 
+Then run **run_synthesis** and **run_floorplan** to ensure that inverter is being used. If we open picorv32a in magic, we see that our inverter is being used. 
+
+
 
 
 ## Timing analysis with ideal clocks using openSTA
