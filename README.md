@@ -552,15 +552,15 @@ and-not nwell_tapped
 ## Timing modelling using delay tables
 Routing can only occur on the grids specified in **sky130_fd_sc_hd**. This grids are specific to the material of routing medium.
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/edit1.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/edit1.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/edit1_view.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/edit1_view.png)
 
 Width of the standard cell should be odd multiples of the x_pitch and height of the standard cell should be odd multiples of y_pitch.
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/x_pitch.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/x_pitch.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/y_pitch.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/y_pitch.png)
 
 Before we extract the LEF file of the layout, it is important to define what the pins are (class) and what they are used for (use). We use the following command in the tkcon window to make the LEF file.
 ```
@@ -608,13 +608,13 @@ add_lefs -src $lefs
 ```
 This shows us that the inverter used in the design will be our custom inverter.
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/merged.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/merged.png)
 
 Then run **run_synthesis** and **run_floorplan** to ensure that inverter is being used. If we open picorv32a in magic, we see that our inverter is being used. 
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/vsd_inv_in_picorv32a_1.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/vsd_inv_in_picorv32a_1.png)
 
-![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/vsd_inv_in_picorv32a_2.png)
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/vsd_inv_in_picorv32a_2.png)
 
 ## Timing analysis with ideal clocks using openSTA
 Designers employ static timing analysis tools (STA) to assess the timing performance of a circuit. When discussing STA analysis before clock tree synthesis, our primary focus is on setup timing concerning a launch clock. STA tools identify issues like worst negative slack (WNS) and total negative slack (TNS), which indicate the most critical path delay and the cumulative path delay concerning our setup timing constraint. Addressing these slack violations can be resolved through debugging using STA analysis within the OpenLANE tool, which incorporates OpenSTA. For the design to be complete, the worst negative slack needs to be above or equal to 0.
