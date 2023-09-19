@@ -1,4 +1,4 @@
-# VLSI PHYSICAL DESIGN
+![image](https://github.com/ks-vandana/pes_pd/assets/116361300/eb96944f-ae1e-4944-9f5d-6033e328d674)# VLSI PHYSICAL DESIGN
 
 ## COURSE DETAILS
 
@@ -617,12 +617,88 @@ Then run **run_synthesis** and **run_floorplan** to ensure that inverter is bein
 ![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/vsd_inv_in_picorv32a_2.png)
 
 ## Timing analysis with ideal clocks using openSTA
+Designers employ static timing analysis tools (STA) to assess the timing performance of a circuit. When discussing STA analysis before clock tree synthesis, our primary focus is on setup timing concerning a launch clock. STA tools identify issues like worst negative slack (WNS) and total negative slack (TNS), which indicate the most critical path delay and the cumulative path delay concerning our setup timing constraint. Addressing these slack violations can be resolved through debugging using STA analysis within the OpenLANE tool, which incorporates OpenSTA. For the design to be complete, the worst negative slack needs to be above or equal to 0.
 
+To perform timing analysis, we need to have 2 files
+1. my_base.sdc saved in src of picorv32a in OpenLane:
+```
+set ::env(CLOCK_PORT) clk
+set ::env(CLOCK_PERIOD) 16.000
+
+set ::env(SYNTH_DRIVING_CELL) sky130_fd_sc_hd__inv_8
+set ::env(SYNTH_DRIVING_CELL_PIN) Y
+set ::env(SYNTH_CAP_LOAD) 17.65
+set ::env(SYNTH_MAX_FANOUT) 4
+
+create_clock [get_ports $::env(CLOCK_PORT)]  -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
+set IO_PCT 0.2
+set input_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
+set output_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
+puts "\[INFO\]: Setting output delay to: $output_delay_value"
+puts "\[INFO\]: Setting input delay to: $input_delay_value"
+
+set_max_fanout $::env(SYNTH_MAX_FANOUT) [current_design]
+
+set clk_indx [lsearch [all_inputs] [get_port $::env(CLOCK_PORT)]]
+#set rst_indx [lsearch [all_inputs] [get_port resetn]]
+set all_inputs_wo_clk [lreplace [all_inputs] $clk_indx $clk_indx]
+#set all_inputs_wo_clk_rst [lreplace $all_inputs_wo_clk $rst_indx $rst_indx]
+set all_inputs_wo_clk_rst $all_inputs_wo_clk
+
+
+# correct resetn
+set_input_delay $input_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] $all_inputs_wo_clk_rst
+#set_input_delay 0.0 -clock [get_clocks $::env(CLOCK_PORT)] {resetn}
+set_output_delay $output_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] [all_outputs]
+
+# TODO set this as parameter
+set_driving_cell -lib_cell $::env(SYNTH_DRIVING_CELL) -pin $::env(SYNTH_DRIVING_CELL_PIN) [all_inputs]
+set cap_load [expr $::env(SYNTH_CAP_LOAD) / 1000.0]
+puts "\[INFO\]: Setting load to: $cap_load"
+set_load  $cap_load [all_outputs]
+```
+2. pre_sta.conf saved in OpenLane directory:
+```
+set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
+read_liberty -max /home/vandana/OpenLane/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
+read_liberty -min /home/vandana/OpenLane/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
+read_verilog /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.14_05.39.56/results/synthesis/picorv32a.v
+link_design picorv32a
+read_sdc /home/vandana/OpenLane/designs/picorv32a/src/my_base.sdc
+report_checks -path_delay min_max -fields {slew trans net cap input_pin}
+report_tns
+report_wns
+```
+Once saved we run the following command in the OpenLane directory
+```
+sta pre_sta.conf
+```
+![image]() sta
 
 ## Clock tree synthesis TritonCTS and signal integrity
+We now run **run_floorplan**, **run_placement** and **run_cts** in OpenLane
 
+![image]() run_cts
 
 ## Timing analysis with real clocks using openSTA
+Invoke OpenROAD uisng the following commands
+```
+cd OpenLane
+sudo make mount
+openroad
+read_lef /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.14_05.39.56/tmp/merged.nom.lef
+read_def /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.14_05.39.56/results/cts/picorv32a.def
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.14_05.39.56/results/synthesis/picorv32a.v
+read_liberty -max $::env(LIB_SLOWEST)
+read_liberty -max $::env(LIB_FASTEST)
+read_sdc /home/vandana/OpenLane/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+report_clock_skew -hold
+report clock_skew -setup
+```
 
 </details>
 
