@@ -1,4 +1,4 @@
-![image](https://github.com/ks-vandana/pes_pd/assets/116361300/eb96944f-ae1e-4944-9f5d-6033e328d674)# VLSI PHYSICAL DESIGN
+# VLSI PHYSICAL DESIGN
 
 ## COURSE DETAILS
 
@@ -673,12 +673,12 @@ Once saved we run the following command in the OpenLane directory
 ```
 sta pre_sta.conf
 ```
-![image]() sta
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/sta.png)
 
 ## Clock tree synthesis TritonCTS and signal integrity
 We now run **run_floorplan**, **run_placement** and **run_cts** in OpenLane
 
-![image]() run_cts
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images/run_cts.png)
 
 ## Timing analysis with real clocks using openSTA
 Invoke OpenROAD uisng the following commands
