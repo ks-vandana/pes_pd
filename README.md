@@ -687,17 +687,17 @@ cd OpenLane
 sudo make mount
 openroad
 read_lef $::env(MERGED_LEF)
-read_def designs/picorv32a/runs/RUN_2023.09.20_13.47.35/results/cts/picorv32a.def
+read_def designs/picorv32a/runs/<recent_run>/results/cts/picorv32a.def
 write_db picorv32a_cts.db
 read_db picorv32a_cts.db
-read_verilog /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.20_13.47.35/results/synthesis/picorv32a.v
+read_verilog /home/vandana/OpenLane/designs/picorv32a/runs/<recent_run>/results/synthesis/picorv32a.v
 read_liberty -max $::env(LIB_SLOWEST)
 read_liberty -max $::env(LIB_FASTEST)
 read_sdc /home/vandana/OpenLane/designs/picorv32a/src/my_base.sdc
 set_propagated_clock [all_clocks]
 report_checks -path_delay min_max -format full_clock_expanded -digits 4
-report_clock_skew -hold
-report clock_skew -setup
+report_clock_skew_metric -hold
+report_clock_skew_metric -setup
 ```
 
 </details>
