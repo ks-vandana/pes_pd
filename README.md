@@ -686,11 +686,11 @@ Invoke OpenROAD uisng the following commands
 cd OpenLane
 sudo make mount
 openroad
-read_lef /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.14_05.39.56/tmp/merged.nom.lef
-read_def /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.14_05.39.56/results/cts/picorv32a.def
-write_db pico_cts.db
-read_db pico_cts.db
-read_verilog /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.14_05.39.56/results/synthesis/picorv32a.v
+read_lef $::env(MERGED_LEF)
+read_def designs/picorv32a/runs/RUN_2023.09.20_13.47.35/results/cts/picorv32a.def
+write_db picorv32a_cts.db
+read_db picorv32a_cts.db
+read_verilog /home/vandana/OpenLane/designs/picorv32a/runs/RUN_2023.09.20_13.47.35/results/synthesis/picorv32a.v
 read_liberty -max $::env(LIB_SLOWEST)
 read_liberty -max $::env(LIB_FASTEST)
 read_sdc /home/vandana/OpenLane/designs/picorv32a/src/my_base.sdc
