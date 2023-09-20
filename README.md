@@ -707,12 +707,24 @@ report clock_skew -setup
 
 <summary><b> DAY 5 </b></summary>
 
-## Routing and design rule check (DRC)
+## Power Distribution Network
+After generating our clock tree network and verifying post routing STA checks we are ready to generate the power distribution network **gen_pdn** in OpenLANE. The PDN feature within OpenLANE will create the following - power ring global to the entire core, power halo local to any preplaced cells, power straps to bring power into the center of the chip and power rails for the standard cells.
 
+It is important to note that the pitch of the metal 1 power rails defines the height of the standard cells.
 
-## Power Distribution Network and routing
+## Global and Detailed Routing
+OpenLANE uses TritonRoute as the routing engine. We use **run_routing** to get the routed design. 
 
+THere are 2 stages in routing - globale and detailed. Global routing first partitions the chip into routing regions and searches for region-to-region paths for all signal nets; this is followed by detailed routing, which determines the exact tracks and vias of these nets based on their region assignments.
 
-## TritonRoute Features
+If DRC errors persist after routing, we have 2 options - re run the routing or manually fix the DRC errors.
+
+## SPEF Extraction
+Once the routing process is finished, you can proceed to extract interconnect parasitics for conducting sign-off post-route STA (Static Timing Analysis). These parasitics are extracted and stored in a SPEF (Standard Parasitic Exchange Format) file. It's important to note that the SPEF extraction tool is currently not integrated into OpenLANE.
+Use the following commands for SPEF extraction.
+```
+cd ~/Desktop/work/tools/SPEFEXTRACTOR
+python3 main.py <path to merged.lef in tmp> <path to def in routing>
+```
 
 </details>
