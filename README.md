@@ -715,9 +715,9 @@ It is important to note that the pitch of the metal 1 power rails defines the he
 ## Global and Detailed Routing
 OpenLANE uses TritonRoute as the routing engine. We use **run_routing** to get the routed design. 
 
-THere are 2 stages in routing - globale and detailed. Global routing first partitions the chip into routing regions and searches for region-to-region paths for all signal nets; this is followed by detailed routing, which determines the exact tracks and vias of these nets based on their region assignments.
+There are 2 stages in routing - global and detailed. Global routing first partitions the chip into routing regions and searches for region-to-region paths for all signal nets. This is followed by detailed routing, which determines the exact tracks and vias of these nets based on their region assignments.
 
-If DRC errors persist after routing, we have 2 options - re run the routing or manually fix the DRC errors.
+If DRC errors persist after routing, we have 2 options - re-run the routing or manually fix the DRC errors.
 
 ## SPEF Extraction
 Once the routing process is finished, you can proceed to extract interconnect parasitics for conducting sign-off post-route STA (Static Timing Analysis). These parasitics are extracted and stored in a SPEF (Standard Parasitic Exchange Format) file. It's important to note that the SPEF extraction tool is currently not integrated into OpenLANE.
