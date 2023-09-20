@@ -708,7 +708,7 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 report_clock_skew_metric -hold
 report_clock_skew_metric -setup
 ```
-![image]() ta_1
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%204/Images%201/ta.png)
 
 </details>
 
