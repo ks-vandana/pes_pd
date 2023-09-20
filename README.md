@@ -685,6 +685,15 @@ Invoke OpenROAD uisng the following commands
 ```
 cd OpenLane
 sudo make mount
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design <file_name> -tag <run_name>  -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+run_synthesis
+run_floorplan
+run_placement
+run_cts
 openroad
 read_lef $::env(MERGED_LEF)
 read_def designs/picorv32a/runs/<recent_run>/results/cts/picorv32a.def
@@ -693,12 +702,13 @@ read_db picorv32a_cts.db
 read_verilog /home/vandana/OpenLane/designs/picorv32a/runs/<recent_run>/results/synthesis/picorv32a.v
 read_liberty -max $::env(LIB_SLOWEST)
 read_liberty -max $::env(LIB_FASTEST)
-read_sdc /home/vandana/OpenLane/designs/picorv32a/src/my_base.sdc
+read_sdc designs/picorv32a/src/my_base.sdc
 set_propagated_clock [all_clocks]
 report_checks -path_delay min_max -format full_clock_expanded -digits 4
 report_clock_skew_metric -hold
 report_clock_skew_metric -setup
 ```
+![image]() ta_1
 
 </details>
 
