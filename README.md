@@ -737,7 +737,7 @@ gen_pdn
 run_routing
 ```
 
-![image]()
+![image](https://github.com/ks-vandana/pes_pd/blob/main/DAY%205/pdn.png)
 
 ## Global and Detailed Routing
 OpenLANE uses TritonRoute as the routing engine. We use **run_routing** to get the routed design. 
