@@ -721,6 +721,23 @@ report_clock_skew_metric -setup
 After generating our clock tree network and verifying post routing STA checks we are ready to generate the power distribution network **gen_pdn** in OpenLANE. The PDN feature within OpenLANE will create the following - power ring global to the entire core, power halo local to any preplaced cells, power straps to bring power into the center of the chip and power rails for the standard cells.
 
 It is important to note that the pitch of the metal 1 power rails defines the height of the standard cells.
+```
+cd OpenLane
+sudo make mount
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design <file_name> -tag <run_name>  -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+run_synthesis
+run_floorplan
+run_placement
+run_cts
+gen_pdn
+run_routing
+```
+
+![image]()
 
 ## Global and Detailed Routing
 OpenLANE uses TritonRoute as the routing engine. We use **run_routing** to get the routed design. 
